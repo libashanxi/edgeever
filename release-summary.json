@@ -1,20 +1,29 @@
 {
-  "version": "1.107.0",
+  "version": "1.109.0",
   "changes": {
     "en-US": [
-      "Edit formulas visually with a math keyboard or switch to LaTeX source; Markdown math fences now render correctly and dollar signs inside code are preserved. Fixes #514.",
-      "Preserve imported Markdown YAML properties, show them above the note, and retain them on export; ordinary single-note exports remain body-only and ZIP backups keep full metadata.",
-      "Simplify the editor reading width, move the outline toggle to the right, and use a palette icon for Markdown source themes."
+      "Refresh note image sharing with refined themes, theme-matched typography, monogram avatars, and a streamlined preview.",
+      "Android fullscreen note images now support pinch zoom and dragging to inspect details (#520).",
+      "Make poster editing more reliable by avoiding false save and draft recovery conflicts, improving editor startup, and consolidating zoom controls.",
+      "Keep the AI assistant launcher consistently positioned across note editors.",
+      "Restore the all-notes view when the selected notebook is deleted from another client.",
+      "Improve WorkBuddy login checks so unusable saved credentials are reported instead of appearing connected."
     ],
     "zh-CN": [
-      "支持通过数学键盘可视化编辑公式并切换 LaTeX 源码；修复 Markdown 数学围栏渲染及代码中美元符号的保留问题。修复 #514。",
-      "保留导入 Markdown 的 YAML 属性，在笔记顶部显示并在导出时保留；普通单篇导出仍只包含正文，ZIP 备份保留完整元数据。",
-      "简化编辑器阅读宽度，将大纲开关移到右侧，并以调色板图标表示 Markdown 源码主题。"
+      "升级笔记图片分享：精修主题、支持跟随主题的字体、字母头像，并简化预览操作。",
+      "Android 笔记图片全屏后支持双指缩放和拖动，便于查看大图细节（#520）。",
+      "提升海报编辑可靠性：避免误报保存及草稿恢复冲突，改善编辑器启动，并统一缩放操作。",
+      "统一各类笔记编辑器中 AI 助手入口的位置与间距。",
+      "选中的笔记本被其他客户端删除后，自动恢复全部笔记列表。",
+      "改善 WorkBuddy 登录检查，避免不可用的已保存凭据被误显示为连接成功。"
     ],
     "ja": [
-      "数式キーボードによる視覚的な数式編集と LaTeX ソース切り替えに対応。Markdown の数式ブロック表示とコード内のドル記号の保持を修正しました。#514 を修正。",
-      "インポートした Markdown の YAML 属性を保持し、ノート上部に表示してエクスポート時にも維持します。通常の単一ノートは本文のみ、ZIP バックアップはすべてのメタデータを含みます。",
-      "エディターの読み取り幅を簡素化し、アウトライン切り替えを右側に移動。Markdown ソーステーマにパレットアイコンを使用します。"
+      "ノートの画像共有に洗練されたテーマ、テーマに合わせたフォント、イニシャルアイコン、使いやすいプレビューを追加しました。",
+      "Android の全画面画像でピンチズームとドラッグに対応し、細部を確認しやすくしました（#520）。",
+      "ポスター編集の保存・下書き復元時の誤った競合を修正し、起動とズーム操作を改善しました。",
+      "各ノート編集画面で AI アシスタントの位置と間隔を統一しました。",
+      "選択中のノートブックが別の端末で削除された場合、すべてのノート一覧に戻るよう修正しました。",
+      "WorkBuddy のログイン確認を改善し、使用できない保存済み認証情報を接続成功と表示する問題を修正しました。"
     ]
   }
 }

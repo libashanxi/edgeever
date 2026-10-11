@@ -1,3 +1,4 @@
+import { AI_ASSISTANT_LAUNCHER_POSITION } from "@/lib/ai-assistant-launcher";
 import { useRef, useState, useEffect, useLayoutEffect, useCallback, useMemo, lazy, Suspense, type CSSProperties, type FocusEvent as ReactFocusEvent, type MouseEvent as ReactMouseEvent, type ReactNode } from "react";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { useEditor, EditorContent, type Editor } from "@tiptap/react";
@@ -316,6 +317,7 @@ import {
 } from "./editor/editor-pane-helpers";
 
 type EditorPaneProps = {
+  onCreatePoster?: (memo: MemoDetail, text: string) => Promise<void>;
   memo: MemoDetail | null;
   repository: EdgeEverRepository;
   desktopFocusMode: boolean;
@@ -416,6 +418,7 @@ const RichEditorPane = ({
   onRestored,
   onMobileDefaultEditConsumed,
   onSaveAsTemplate,
+  onCreatePoster,
   searchFocusToken,
   replaceFocusToken,
   aiAssistantOpenToken,
@@ -4112,6 +4115,11 @@ const RichEditorPane = ({
               onSearch={() => openNoteSearch()}
               textNoteMenuItems={(
                 <>
+                  {onCreatePoster && !effectiveReadOnly && <DropdownMenuItem disabled={!memo || saveMutation.isPending} onSelect={() => {
+                    const selection = editor?.state.selection;
+                    const text = selection && !selection.empty ? editor?.state.doc.textBetween(selection.from, selection.to, "\n") ?? "" : editor?.getText() ?? memo?.contentText ?? "";
+                    void (async () => { if (!memo) return; if (hasUnsavedChangesRef.current) await saveMutation.mutateAsync(); await onCreatePoster(memoRef.current ?? memo, text); })().catch((error) => setSaveState("error"));
+                  }}>{t("poster.createFromNote")}</DropdownMenuItem>}
                   {!isMobileViewport && !useMobilePlainTextEditor && !useMarkdownSourceEditor && (
                     <DropdownMenuItem
                       className="flex h-9 w-full items-center gap-2 px-3 text-left text-xs text-slate-700 hover:bg-slate-50 cursor-pointer outline-none"
@@ -4579,7 +4587,7 @@ const RichEditorPane = ({
               // The phone note view already has an edit button in this corner.
               isMobileViewport && !mobileEditingActive
                 ? "bottom-[calc(4.75rem+env(safe-area-inset-bottom))] right-4"
-                : "bottom-[calc(1.25rem+env(safe-area-inset-bottom))] right-5",
+                : AI_ASSISTANT_LAUNCHER_POSITION,
             )}
             aria-label={t("aiAssistant.open")}
             onClick={openAiAssistant}
